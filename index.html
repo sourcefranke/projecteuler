@@ -42,21 +42,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project Euler</a>
+          <a class="navbar-brand" onclick="navigate('home')">Project Euler</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">Problems <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a onclick="loadNotebookPage('problems/00003_largest_prime_factor/desc.md', 'problems/00003_largest_prime_factor/solution.html')">
-                  3 - Largest Prime Factor
-                </a></li>
+              <ul id="menu-items" class="dropdown-menu">
+
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a onclick="loadNormalPage('about.md');"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+            <li><a onclick="navigate('about')">
+              <span class="glyphicon glyphicon-info-sign"></span> About
+            </a></li>
           </ul>
         </div>
       </div>
@@ -69,6 +69,37 @@
 </body>
 
 <script>
+  var myDropdown = [
+    { call: 'navigate("3")', text: '3 - Largest Prime Factor' },
+  ];
+
+  var entries = '';
+  myDropdown.forEach(entry => {
+    entries += `<li><a onclick='${entry.call}'>${entry.text}</a></li>`;
+  });
+  document.getElementById('menu-items').innerHTML = entries;
+
+
+  const pages = {
+     'home': () => loadNormalPage('home.md'),
+     'about': () => loadNormalPage('about.md'),
+     '3': () => loadNotebookPage('problems/00003_largest_prime_factor/desc.md', 'problems/00003_largest_prime_factor/solution.html')
+  }
+
+  const url = new URL(window.location);
+  const params = new URLSearchParams(url.search);
+
+  var page = 'home';
+  if(params.has('page'))
+    page = params.get('page');
+
+  pages[page]();
+
+
+  function navigate(page) {
+     window.location = location.protocol + '//' + location.host + location.pathname + '?page=' + page
+  }
+
   async function loadNormalPage(mdFile) {
       await loadTemplate('normal');
       await loadMarkdown(mdFile, 'text');
@@ -92,7 +123,5 @@
       const html = marked.parse(text);
       document.getElementById(id).innerHTML = html;
   }
-
-  loadNormalPage('about.md');
 </script>
 </html>

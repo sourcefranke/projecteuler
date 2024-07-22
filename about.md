@@ -1,15 +1,10 @@
-# Project Euler
-
-On this page I publish personal solutions for problems of https://projecteuler.net/
-
-## About
+# About
 
 Published by Lukas Tietenberg
 on GitHub
-under the MIT License
 
 ---
-### MIT License
+## MIT License
 
 Copyright (c) 2024 Lukas Tietenberg
 
