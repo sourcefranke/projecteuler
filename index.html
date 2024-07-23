@@ -70,7 +70,8 @@
 
 <script>
   var myDropdown = [
-    { call: 'navigate("3")', text: '3 - Largest Prime Factor' },
+    { call: 'navigate("1")', text: '#1 - Multiples of 3 or 5' },
+    { call: 'navigate("3")', text: '#3 - Largest Prime Factor' },
   ];
 
   var entries = '';
@@ -83,7 +84,8 @@
   const pages = {
      'home': () => loadNormalPage('home.md'),
      'about': () => loadNormalPage('about.md'),
-     '3': () => loadNotebookPage('problems/00003_largest_prime_factor/desc.md', 'problems/00003_largest_prime_factor/solution.html')
+     '1': () => loadNotebookPage('00001'),
+     '3': () => loadNotebookPage('00003'),
   }
 
   const url = new URL(window.location);
@@ -97,7 +99,7 @@
 
 
   function navigate(page) {
-     window.location = location.protocol + '//' + location.host + location.pathname + '?page=' + page
+     window.location = `${location.protocol}//${location.host + location.pathname}?page=${page}`;
   }
 
   async function loadNormalPage(mdFile) {
@@ -105,14 +107,14 @@
       await loadMarkdown(mdFile, 'text');
   }
 
-  async function loadNotebookPage(mdFile, notebookFile) {
+  async function loadNotebookPage(number) {
       await loadTemplate('description_notebook');
-      await loadMarkdown(mdFile, 'text');
-      document.getElementById('notebook').src = notebookFile;
+      await loadMarkdown(`problems/${number}/desc.md`, 'text');
+      document.getElementById('notebook').src = `problems/${number}/solution.html`;
   }
 
   async function loadTemplate(file) {
-      const response = await fetch('page_templates/' + file + '.html');
+      const response = await fetch(`page_templates/${file}.html`);
       const text = await response.text();
       document.getElementById('content').innerHTML = text;
   }

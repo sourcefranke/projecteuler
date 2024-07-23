@@ -1,7 +1,7 @@
 # About
 
 Published by Lukas Tietenberg
-on GitHub
+on [GitHub](https://github.com/sourcefranke/projecteuler)
 
 ---
 ## MIT License
