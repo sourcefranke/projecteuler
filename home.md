@@ -11,5 +11,7 @@ The solution sheets are created with the help of [**Jupyter Notebook**](https://
 <br>
 
 ## Why I am doing this?
-I am continuously trying out different strategies of presenting and communicating technical solutions.
-For example, in parallel I am working on creating presentation slides on the same topic with the help of [**Slidev**](https://sli.dev).
+I am continuously trying out different strategies for presenting and communicating technical solutions.
+For example, in parallel I am working on creating presentation slides about
+[**Dice Roll Odds**](https://sourcefranke.github.io/dice_roll_odds)
+with the help of [**Slidev**](https://sli.dev).
