@@ -12,7 +12,7 @@ document.getElementById('menu-items').innerHTML = entries;
 
 const pages = {
     'home': () => loadNormalPage('home.md'),
-    'about': () => loadNormalPage('about.md'),
+    'about': () => loadTwoColumns('about.md', 'license.md'),
     '1': () => loadNotebookPage('00001'),
     '3': () => loadNotebookPage('00003'),
 }
@@ -41,6 +41,12 @@ async function loadNotebookPage(number) {
   await loadTemplate('description_notebook');
   await loadMarkdown(`problems/${number}/desc.md`, 'text');
   document.getElementById('notebook').src = `problems/${number}/solution.html`;
+}
+
+async function loadTwoColumns(left, right) {
+  await loadTemplate('two_columns');
+  await loadMarkdown(left, 'left');
+  await loadMarkdown(right, 'right');
 }
 
 async function loadTemplate(file) {
