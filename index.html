@@ -5,9 +5,13 @@
 
   <style>
     a {
-      color: white;
+      color: white !important;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    #menu-items a {
+      color: black !important;
     }
 
     iframe {
@@ -68,5 +72,10 @@
   </div>
 </body>
 
+<script>
+  document.querySelectorAll('a:not(#menu-item a)').forEach(link => {
+    link.setAttribute('target', '_blank');
+  });
+</script>
 <script src="index.js"></script>
 </html>
